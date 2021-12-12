@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import { format } from 'date-fns'
 
 import "react-datepicker/dist/react-datepicker.css";
+import AircraftCard from "../components/AircraftCard";
 
 const Home = () => {
 
@@ -28,80 +29,85 @@ const Home = () => {
     ]
 
     return (
-        <div className="flex flex-row p-10">
+        <div className='p-10'>
 
-            <div className="bg-white flex justify-center rounded-xl flex-col items-center flex-row p-5 w-full mr-4 shadow-2xl">
-                <p className='mb-5 text-xl'>Find Flight</p>
-                <p className='text-blue-900'><FaPlaneDeparture /></p>
-                <Select placeholder='Departure from' className='p-3 w-full' options={options} />
-                <Select placeholder='Departure airport' className='p-3 w-full' options={options} />
-                <p className='text-blue-900'><FaPlaneArrival /></p>
-                <Select placeholder='Arrival to' className='p-3 w-full' options={options} />
-                <Select placeholder='Arrival airport' className='p-3 w-full' options={options} />
-                <div className='w-full p-3'>
-                    <DatePicker
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
-                        selectsStart
-                        startDate={startDate}
-                        endDate={endDate}
-                        nextMonthButtonLabel=">"
-                        previousMonthButtonLabel="<"
-                        popperClassName="react-datepicker-left"
-                        customInput={<ButtonInput />}
-                        renderCustomHeader={({
-                            date,
-                            decreaseMonth,
-                            increaseMonth,
-                            prevMonthButtonDisabled,
-                            nextMonthButtonDisabled,
-                        }) => (
-                            <div className="flex items-center justify-between px-2 py-2">
-                                <span className="text-lg text-gray-700">
-                                    {format(date, 'MMMM yyyy')}
-                                </span>
+            <div className="flex flex-row">
 
-                                <div className="space-x-2">
-                                    <button
-                                        onClick={decreaseMonth}
-                                        disabled={prevMonthButtonDisabled}
-                                        type="button"
-                                        className={`
+                <div className="bg-white flex justify-center rounded-xl flex-col items-center flex-row p-5 w-full mr-4 shadow-2xl">
+                    <p className='mb-5 text-xl'>Find Flight</p>
+                    <p className='text-blue-900'><FaPlaneDeparture /></p>
+                    <Select placeholder='Departure from' className='p-3 w-full' options={options} />
+                    <Select placeholder='Departure airport' className='p-3 w-full' options={options} />
+                    <p className='text-blue-900'><FaPlaneArrival /></p>
+                    <Select placeholder='Arrival to' className='p-3 w-full' options={options} />
+                    <Select placeholder='Arrival airport' className='p-3 w-full' options={options} />
+                    <div className='w-full p-3'>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
+                            selectsStart
+                            startDate={startDate}
+                            endDate={endDate}
+                            nextMonthButtonLabel=">"
+                            previousMonthButtonLabel="<"
+                            popperClassName="react-datepicker-left"
+                            customInput={<ButtonInput />}
+                            renderCustomHeader={({
+                                date,
+                                decreaseMonth,
+                                increaseMonth,
+                                prevMonthButtonDisabled,
+                                nextMonthButtonDisabled,
+                            }) => (
+                                <div className="flex items-center justify-between px-2 py-2">
+                                    <span className="text-lg text-gray-700">
+                                        {format(date, 'MMMM yyyy')}
+                                    </span>
+
+                                    <div className="space-x-2">
+                                        <button
+                                            onClick={decreaseMonth}
+                                            disabled={prevMonthButtonDisabled}
+                                            type="button"
+                                            className={`
                                             ${prevMonthButtonDisabled && 'cursor-not-allowed opacity-50'}
                                             inline-flex p-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500
                                         `}
-                                    >
-                                        {/* <ChevronLeftIcon className="w-5 h-5 text-gray-600" /> */}
-                                    </button>
+                                        >
+                                            {/* <ChevronLeftIcon className="w-5 h-5 text-gray-600" /> */}
+                                        </button>
 
-                                    <button
-                                        onClick={increaseMonth}
-                                        disabled={nextMonthButtonDisabled}
-                                        type="button"
-                                        className={`
+                                        <button
+                                            onClick={increaseMonth}
+                                            disabled={nextMonthButtonDisabled}
+                                            type="button"
+                                            className={`
                                             ${nextMonthButtonDisabled && 'cursor-not-allowed opacity-50'}
                                             inline-flex p-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-blue-500
                                         `}
-                                    >
-                                        {/* <ChevronRightIcon className="w-5 h-5 text-gray-600" /> */}
-                                    </button>
+                                        >
+                                            {/* <ChevronRightIcon className="w-5 h-5 text-gray-600" /> */}
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    />
-                </div>
-                <label className="inline-flex items-center">
-                    <input type="checkbox" className="form-checkbox" />
-                    <span className="ml-2">Direct Flight</span>
-                </label>
-                <div className='w-full p-3'>
-                    <button className='bg-blue-900 text-yellow-400 w-full rounded-md py-2 font-bold'>Search</button>
+                            )}
+                        />
+                    </div>
+                    <label className="inline-flex items-center">
+                        <input type="checkbox" className="form-checkbox" />
+                        <span className="ml-2">Direct Flight</span>
+                    </label>
+                    <div className='w-full p-3'>
+                        <button className='bg-blue-900 text-yellow-400 w-full rounded-md py-2 font-bold'>Search</button>
 
+                    </div>
                 </div>
+                <img className="rounded-xl shadow-2xl" src={cover} alt="" />
             </div>
-
-            {/* <img className="rounded-xl shadow-2xl" src={cover} alt="" /> */}
-
+            <div className='flex flex-col mt-10'>
+                <p className='text-center text-3xl'>Aircrafts</p>
+                <AircraftCard />
+            </div>
         </div>
     );
 };
