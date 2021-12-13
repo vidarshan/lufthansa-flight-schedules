@@ -1,7 +1,9 @@
 import React, { useState, useEffect, forwardRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import cover from "../images/ssd.jpeg";
 import Select from 'react-select';
 import { FaPlaneDeparture, FaPlaneArrival } from 'react-icons/fa';
+import { getToken } from '../actions/accessActions';
 import DatePicker from "react-datepicker";
 import { format } from 'date-fns'
 
@@ -9,6 +11,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import AircraftCard from "../components/AircraftCard";
 
 const Home = () => {
+
+    const dispatch = useDispatch();
+
+    const accessDetails = useSelector((state) => state.getAccess);
+    const { accessInfo, loading, error } = accessDetails;
 
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date().setMonth(startDate.getMonth() + 1))
@@ -21,6 +28,12 @@ const Home = () => {
         if (startDate > endDate) setEndDate(startDate)
     }, [startDate, endDate])
 
+    useEffect(() => {
+
+        if (!accessInfo) {
+            dispatch(getToken())
+        }
+    }, [])
 
     const options = [
         { value: 'chocolate', label: 'Chocolate' },

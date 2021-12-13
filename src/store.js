@@ -1,17 +1,18 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { getAccessTokenReducer } from './reducers/accessReducers';
 
 const reducer = combineReducers({
-
+    getAccess: getAccessTokenReducer
 });
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
-    ? JSON.parse(localStorage.getItem('userInfo'))
+const accessInfoFromStorage = localStorage.getItem('access')
+    ? JSON.parse(localStorage.getItem('access'))
     : null;
 
 const initialState = {
-    userLogin: { userInfo: userInfoFromStorage },
+    getAccess: { accessInfo: accessInfoFromStorage },
 };
 
 const middlware = [thunk];
