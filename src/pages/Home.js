@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 // import cover from "../images/ssd.jpeg";
 import { FaPlaneDeparture, FaPlaneArrival } from 'react-icons/fa';
 import { getToken } from '../actions/accessActions';
+import { getSchedules } from '../actions/scheduleActions';
 import { DatePicker } from '@mantine/dates';
 import { Select, Checkbox } from '@mantine/core';
 import airports from '../data/airports.json';
 import "react-datepicker/dist/react-datepicker.css";
 import AircraftCard from "../components/AircraftCard";
 import map from 'lodash.map';
+import moment from 'moment';
 
 const Home = () => {
 
@@ -17,6 +20,8 @@ const Home = () => {
     const arrivalAirports = useRef([]);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const accessDetails = useSelector((state) => state.getAccess);
 
     const { accessInfo } = accessDetails;
@@ -29,10 +34,15 @@ const Home = () => {
     const [date, setDate] = useState();
 
     const submitHandler = () => {
-        console.log("da ", departureAirport);
-        console.log('dr', direct);
-        console.log('date', date)
-        console.log("aa ", arrivalAirport);
+
+        navigate(`/schedules/${departureAirport}/${arrivalAirport}/${moment(date).format('YYYY-MM-DD')}/${direct}/1`)
+        // let details = {
+        //     from: departureAirport,
+        //     to: arrivalAirport,
+        //     date: moment(date).format('YYYY-MM-DD'),
+        //     direct
+        // }
+        // dispatch(getSchedules(details));
     }
 
 
