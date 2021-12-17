@@ -3,7 +3,6 @@ import { BASE_URL } from '../config/config';
 import { GET_SCHEDULES_REQUEST, GET_SCHEDULES_SUCCESS, GET_SCHEDULES_FAIL } from '../constants/scheduleConstants';
 
 export const getSchedules = (details) => async (dispatch, getState) => {
-    console.log(details)
     try {
         dispatch({
             type: GET_SCHEDULES_REQUEST,
@@ -19,10 +18,6 @@ export const getSchedules = (details) => async (dispatch, getState) => {
             },
         };
 
-
-        console.log(details)
-
-        console.log(`${BASE_URL}/operations/schedules/${details.from}/${details.to}/${details.date}`)
 
         const { data } = await axios.get(`${BASE_URL}/operations/schedules/${details.from}/${details.to}/${details.date}`, config);
 
