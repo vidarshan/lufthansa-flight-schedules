@@ -60,8 +60,8 @@ const Schedules = () => {
 
                         {/* {console.log(schedules)} */}
                         {/* {console.log(schedules.ScheduleResource)} */}
-                        {map(allSchedules, (schedule) => {
-                            return <ScheduleCard schedule={schedule} />
+                        {map(allSchedules, (schedule, id) => {
+                            return <ScheduleCard key={id} schedule={schedule} />
 
                         })}
 

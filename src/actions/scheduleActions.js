@@ -19,7 +19,7 @@ export const getSchedules = (details) => async (dispatch, getState) => {
         };
 
 
-        const { data } = await axios.get(`${BASE_URL}/operations/schedules/${details.from}/${details.to}/${details.date}`, config);
+        const { data } = await axios.get(`${BASE_URL}/operations/schedules/${details.from}/${details.to}/${details.date}?directFlights=false`, config);
 
         if (data.ScheduleResource) {
             dispatch({

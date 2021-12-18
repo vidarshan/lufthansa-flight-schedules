@@ -16,9 +16,10 @@ const ScheduleCard = (schedule) => {
 
     const [active, setActive] = useState(1);
 
+
     return (
         <div className="shadow-xl rounded-xl m-3 p-8 bg-white xs:m-1 xs:p-2">
-            {/* {console.log(schedule)} */}
+
             <p className="p-4 text-2xl font-semibold">Quatar Airways</p>
             <div className="shadow-xl rounded-xl p-5 m-3 xs:p-3 xs:flex xs:flex-col xs:items-center">
                 <Stepper
@@ -34,9 +35,10 @@ const ScheduleCard = (schedule) => {
                     />
                     <Stepper.Step
                         icon={<GiCommercialAirplane size={18} />}
-                        label='JFK'
+                        // label={Flight.Arrival.AirportCode}
                         description="United States"
                     />
+                    {console.log(schedule.schedule.Flight.length)}
                 </Stepper>
             </div>
             <div className="p-3 xs:p-3 xs:mt-3 mt-1">
